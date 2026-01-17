@@ -14,16 +14,25 @@ const recipes = [
   },
  
   
-    {
-    name: "test",
+  {
+    name: "Lentil Soup",
     ingredients: [
-      { name: "egg", amount: 3, unit: "each" },
-      { name: "milk", amount: 0.25, unit: "cup" },
-      { name: "cheddar cheese", amount: 2, unit: "oz" },
-      { name: "salt", amount: 1, unit: "tsp" }
+      { name: "olive oil", amount: 2, unit: "tbsp" },
+      { name: "onion", amount: 1, unit: "cup" },
+      { name: "carrots", amount: 0.5, unit: "cup" },
+      { name: "celery", amount: 0.5, unit: "cup" },
+      { name: "kosher salt", amount: 2, unit: "tsp" },
+      { name: "lentils", amount: 1, unit: "lb" },
+      { name: "tomatoes", amount: 1, unit: "cup" },
+      { name: "vegetable broth", amount: 2, unit: "quart" },
+      { name: "ground coriander", amount: 0.5, unit: "tsp" },
+      { name: "cumin", amount: 0.5, unit: "tsp" },
+      { name: "grains of paradise", amount: 0.5, unit: "tsp" }
     ],
-    instructions: "Beat eggs and milk, heat pan, pour eggs, add cheese, fold and serve."
-  },  
+    instructions:
+      "Get out a 6 quart dutch oven, finely chop the onion, finely chop the carrot, finely chop the celery, peel and chop the tomatoes, place the olive oil into a large 6 quart dutch oven, sit over medium heat, once hot add the finely chopped onion, finely chopped carrot, finely chopped celery, salt, sweat for 6 to 7 minutes until the onions are translucent, add the lentils, tomatoes, broth, coriander, cumin, grains of paradise, stir to combine, increase the heat to high, bring just to a boil, reduce the heat to low, cover and simmer for 35 to 40 minutes until the lentils are tender, serve immediately."
+  },
+
   
   
   {
