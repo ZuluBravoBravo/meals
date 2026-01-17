@@ -24,7 +24,7 @@
     select {
       padding: 5px;
     }
-    #generate-btn {
+    #generate-btn, #print-btn {
       display: block;
       margin: 20px auto;
       padding: 10px 20px;
@@ -34,15 +34,28 @@
     #output {
       margin-top: 40px;
     }
-    .shopping-list, .recipe {
+    .shopping-list {
       margin-bottom: 40px;
+      page-break-after: always; /* Shopping list ends, recipes start fresh */
     }
     .recipe {
-      page-break-before: always;
+      page-break-before: always; /* Each recipe on new page */
     }
-    ul {
+    .recipe h3 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .recipe h4 {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .recipe ul {
       list-style-type: disc;
       margin-left: 20px;
+    }
+    .recipe p {
+      margin: 3px 0; /* Tight spacing between instruction lines */
     }
   </style>
 </head>
@@ -81,6 +94,7 @@
   </div>
 
   <button id="generate-btn">Generate Recipes & Shopping List</button>
+  <button id="print-btn">Print / Save PDF</button>
 
   <div id="output">
     <div class="shopping-list" id="shopping-list"></div>
@@ -102,7 +116,6 @@
 
     // Generate button click
     document.getElementById("generate-btn").addEventListener("click", () => {
-      // Gather selected recipes
       const selectedRecipes = [];
       days.forEach(day => {
         const select = document.getElementById(day);
@@ -124,13 +137,26 @@
         let html = `<h3>${r.name}</h3>`;
         html += "<h4>Ingredients:</h4><ul>";
         r.ingredients.forEach(ing => {
-          html += `<li>${ing.amount} ${ing.unit} ${ing.name}</li>`;
+          html += `<li>${toMixedFraction(ing.amount)} ${ing.unit} ${ing.name}</li>`;
         });
         html += "</ul>";
-        if(r.instructions) html += `<h4>Instructions:</h4><p>${r.instructions}</p>`;
+
+        // Split instructions by commas into separate lines
+        if(r.instructions) {
+          html += "<h4>Instructions:</h4>";
+          r.instructions.split(',').forEach(line => {
+            html += `<p>${line.trim()}</p>`;
+          });
+        }
+
         div.innerHTML = html;
         recipesDiv.appendChild(div);
       });
+    });
+
+    // Print button
+    document.getElementById("print-btn").addEventListener("click", () => {
+      window.print();
     });
   </script>
 </body>
