@@ -3,19 +3,36 @@
 // -----------------------------
 const recipes = [
   {
-    name: "Pancakes",
+    name: "Winter Minestrone Soup",
     ingredients: [
+      { name: "onion", amount: 1, unit: "each" },
+      { name: "celery", amount: 1, unit: "stalk" },
+      { name: "fennel", amount: 1, unit: "bulb" },
+      { name: "all-purpose flour", amount: 1.5, unit: "cup" },
+      { name: "milk", amount: 1, unit: "cup" },
+      { name: "egg", amount: 2, unit: "each" },
       { name: "all-purpose flour", amount: 1.5, unit: "cup" },
       { name: "milk", amount: 1, unit: "cup" },
       { name: "egg", amount: 2, unit: "each" },
       { name: "sugar", amount: 2, unit: "tbsp" }
     ],
- instructions: `Mix all ingredients
+ instructions: cut half an onion into 1/2" pieces
+ slice celery crossways into 1/2" pieces
+ cut half a bulb of fennel into 1" pieces
+ peel and cut potatos into 1" cubes
+ 
+ Heat oil in a large stock pot over medium high heat
+ add onion celery fennel potatoes and garlic
+ cook stirring occasionally about 5 minutes
+ add tomatoes and their juices stock and Kennelly beans
+ season with two teaspoons salt and half a teaspoon pepper
+ increase heat to high and bring to a boil
+ reduce heat to a simmer and cook until potatoes are tender about 10 minutes
+ stir in vinegar and swiss chard season with salt and pepper
+ prepare the pasta to Al Dente by following the directions included with the pasta
+ divide pasta evenly between bowls
+ little soup over the pasta and garnish with cheese
 
-Heat a skillet over medium heat
-Pour batter
-
-Cook until golden on both sides`
 
   },
  
@@ -29,8 +46,8 @@ Cook until golden on both sides`
     name: "Lentil Soup",
     ingredients: [
       { name: "olive oil", amount: 2, unit: "tbsp" },
-      { name: "onion", amount: 1, unit: "cup" },
-      { name: "carrots", amount: 0.5, unit: "cup" },
+      { name: "onion", amount: 1, unit: "each" },
+      { name: "carrots", amount: 1, unit: "each" },
       { name: "celery", amount: 1, unit: "stalk" },
       { name: "kosher salt", amount: 2, unit: "tsp" },
       { name: "lentils", amount: 1, unit: "lb" },
@@ -40,24 +57,28 @@ Cook until golden on both sides`
       { name: "cumin", amount: 0.5, unit: "tsp" },
       { name: "grains of paradise", amount: 0.5, unit: "tsp" }
     ],
-    instructions: `Prep
-    Get out a 6 quart dutch oven
-    finely chop the onion
-    finely chop 1/2 a cup of carrots
-    finely chop the celery
+    instructions: `Get out a 6 quart dutch oven
+    finely chop 1/2 a cup of onion
+    finely chop 1/2 a cup of carrot
+    finely chop 1/2 a cup of celery
     open the can of tomatoes
     
-    place the olive oil into a large 6 quart dutch oven
+    place the olive oil into the dutch oven
     sit over medium heat
-    once hot add the finely chopped onion, carrot, and celery
+    once hotadd the onion, carrot, and celery
     add salt
     
-    sweat for 6 to 7 minutes until the onions are translucent
+    sweat for 6 to 7 minutes 
+    until the onions are translucent
     
-    add the lentils, tomatoes, broth, coriander, cumin, grains of paradise and stir to combine
+    add
+    lentils, tomatoes, broth, coriander, cumin, grains of paradise
+    stir to combine
+    
     increase the heat to high and bring just to a boil
     
-    cover, reduce the heat to low, and simmer for 35 to 40 minutes until the lentils are tender
+    cover, reduce the heat to low, simmer for 35 to 40 minutes 
+    until the lentils are tender
     serve immediately.`
   },
 
