@@ -16,7 +16,7 @@ const recipes = [
       { name: "egg", amount: 2, unit: "each" },
       { name: "sugar", amount: 2, unit: "tbsp" }
     ],
- instructions: cut half an onion into 1/2" pieces
+ instructions: `cut half an onion into 1/2" pieces
  slice celery crossways into 1/2" pieces
  cut half a bulb of fennel into 1" pieces
  peel and cut potatos into 1" cubes
@@ -31,7 +31,7 @@ const recipes = [
  stir in vinegar and swiss chard season with salt and pepper
  prepare the pasta to Al Dente by following the directions included with the pasta
  divide pasta evenly between bowls
- little soup over the pasta and garnish with cheese
+ little soup over the pasta and garnish with cheese`
 
 
   },
