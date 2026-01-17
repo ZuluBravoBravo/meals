@@ -12,6 +12,20 @@ const recipes = [
     ],
     instructions: "Mix all ingredients, heat a skillet over medium heat, pour batter, cook until golden on both sides."
   },
+ 
+  
+    {
+    name: "test",
+    ingredients: [
+      { name: "egg", amount: 3, unit: "each" },
+      { name: "milk", amount: 0.25, unit: "cup" },
+      { name: "cheddar cheese", amount: 2, unit: "oz" },
+      { name: "salt", amount: 1, unit: "tsp" }
+    ],
+    instructions: "Beat eggs and milk, heat pan, pour eggs, add cheese, fold and serve."
+  },  
+  
+  
   {
     name: "Omelette",
     ingredients: [
