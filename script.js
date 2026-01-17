@@ -13,6 +13,23 @@ const recipes = [
     instructions: "Mix all ingredients, heat a skillet over medium heat, pour batter, cook until golden on both sides."
   },
   {
+    name: "Lentil Soup",
+    ingredients: [
+      { name: "olive oil", amount: 2, unit: "tbsp" },
+      { name: "onion", amount: 1, unit: "cup" },      
+      { name: "carrots", amount: 0.5, unit: "cup" },
+      { name: "celery", amount: 0.5, unit: "cup" },
+      { name: "kosher salt", amount: 2, unit: "tsp" }
+      { name: "lentils", amount: 1, unit: "lb" },
+      { name: "tomatos", amount: 1, unit: "cup" },      
+      { name: "vegetable broth", amount: 2, unit: "quart" },
+      { name: "ground coriander", amount: 0.5, unit: "tsp" },
+      { name: "cumin", amount: 0.5, unit: "tsp" },
+      { name: "grains of paradise", amount: 0.5, unit: "tsp" },    
+    ],
+    instructions: "Beat eggs and milk, heat pan, pour eggs, add cheese, fold and serve."
+  },
+  {
     name: "Omelette",
     ingredients: [
       { name: "egg", amount: 3, unit: "each" },
