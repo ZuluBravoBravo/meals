@@ -1,6 +1,5 @@
-
 // -----------------------------
-// Sample Recipes
+// Sample Recipes with Instructions
 // -----------------------------
 const recipes = [
   {
@@ -10,7 +9,8 @@ const recipes = [
       { name: "milk", amount: 1, unit: "cup" },
       { name: "egg", amount: 2, unit: "each" },
       { name: "sugar", amount: 2, unit: "tbsp" }
-    ]
+    ],
+    instructions: "Mix all ingredients, heat a skillet over medium heat, pour batter, cook until golden on both sides."
   },
   {
     name: "Omelette",
@@ -19,7 +19,8 @@ const recipes = [
       { name: "milk", amount: 0.25, unit: "cup" },
       { name: "cheddar cheese", amount: 2, unit: "oz" },
       { name: "salt", amount: 1, unit: "tsp" }
-    ]
+    ],
+    instructions: "Beat eggs with milk, pour into a heated skillet, cook until set, sprinkle cheese, fold omelette."
   },
   {
     name: "Chocolate Chip Cookies",
@@ -29,7 +30,8 @@ const recipes = [
       { name: "butter", amount: 0.5, unit: "lb" },
       { name: "chocolate chips", amount: 1, unit: "cup" },
       { name: "egg", amount: 1, unit: "each" }
-    ]
+    ],
+    instructions: "Preheat oven to 350°F, cream butter and sugar, add eggs, mix in flour and chocolate chips, bake 10-12 minutes."
   }
 ];
 
@@ -55,7 +57,6 @@ const weightToOz = {
 function toMixedFraction(value) {
   const whole = Math.floor(value);
   const frac = value - whole;
-  // approximate fraction to nearest 1/16
   const denominator = 16;
   const numerator = Math.round(frac * denominator);
   if (numerator === 0) return `${whole}`;
@@ -81,7 +82,7 @@ function generateShoppingList(selectedRecipes) {
       } else if (weightToOz[unit]) {
         amount = amount * weightToOz[unit];
         unit = "oz";
-      } // else unit remains "each"
+      }
 
       if (!totals[key]) {
         totals[key] = { amount: 0, unit: unit };
@@ -132,3 +133,40 @@ function generateShoppingList(selectedRecipes) {
 
   return shoppingList;
 }
+
+// -----------------------------
+// Generate Button Click Logic
+// -----------------------------
+const days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+
+document.getElementById("generate-btn").addEventListener("click", () => {
+  // Gather selected recipes
+  const selectedRecipes = [];
+  days.forEach(day => {
+    const select = document.getElementById(day);
+    const recipe = recipes.find(r => r.name === select.value);
+    if(recipe) selectedRecipes.push(recipe);
+  });
+
+  // Generate shopping list
+  const shopping = generateShoppingList(selectedRecipes);
+  const shoppingDiv = document.getElementById("shopping-list");
+  shoppingDiv.innerHTML = "<h2>Shopping List</h2><ul>" + shopping.map(i => `<li>${i}</li>`).join("") + "</ul>";
+
+  // Generate recipes section
+  const recipesDiv = document.getElementById("recipes");
+  recipesDiv.innerHTML = "<h2>Recipes</h2>";
+  selectedRecipes.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "recipe";
+    let html = `<h3>${r.name}</h3>`;
+    html += "<h4>Ingredients:</h4><ul>";
+    r.ingredients.forEach(ing => {
+      html += `<li>${toMixedFraction(ing.amount)} ${ing.unit} ${ing.name}</li>`;
+    });
+    html += "</ul>";
+    if(r.instructions) html += `<h4>Instructions:</h4><p>${r.instructions}</p>`;
+    div.innerHTML = html;
+    recipesDiv.appendChild(div);
+  });
+});
