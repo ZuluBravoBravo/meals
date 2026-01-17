@@ -212,8 +212,8 @@ document.addEventListener("DOMContentLoaded", () => {
       html+="</ul>";
 
       html+="<h4>Instructions</h4>";
-      r.instructions.split(",").forEach(step=>{
-        html+=`<p>${step.trim()}</p>`;
+      r.instructions.split("\n").forEach(step => {
+        html += `<p>${step.trim()}</p>`;
       });
 
       div.innerHTML = html;
