@@ -234,11 +234,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       html+="</ul>";
 
-      html+="<h4>Instructions</h4>";
+
       r.instructions.split("\n").forEach(step => {
-        html += `<p>${step.trim()}</p>`;
+        if(step.trim() === "") {
+          html += "<br>"; // empty line
+        } else {
+          html += `<p>${step.trim()}</p>`;
+        }
       });
 
+      
       div.innerHTML = html;
       recipesDiv.appendChild(div);
     });
