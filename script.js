@@ -15,7 +15,7 @@ const recipes = [
       { name: "vegetable broth", amount: 8, unit: "cups", category: "Pantry" },
       { name: "cannellini beans", amount: 1, unit: "can", category: "Pantry" },
       { name: "red wine vinegar", amount: 2, unit: "tsp", category: "Pantry" },
-      { name: "swiss chard", amount: 1.5, unit: "bunch", category: "Produce" },
+      { name: "swiss chard", amount: 1.5 , unit: "bunch", category: "Produce" },
       { name: "short pasta", amount: 2, unit: "cups", category: "Grains" },
       { name: "grated parmesan cheese", amount: 1, unit: "cup", category: "Dairy" },
       { name: "salt", amount: 1, unit: "pinch", category: "Pantry" },
@@ -26,22 +26,22 @@ get out a large stock pot
 cut half an onion into 1/2 inch pieces
 slice celery crossways into 1/2 inch pieces
 cut half a bulb of fennel into 1 inch pieces
-peel and cut potatoes into 1 inch cubes
+peel and cut potatos into 1 inch cubes
 thinly slice the swiss chard
 finely chop garlic
-Open cannellini beans
+Open cannelli beans
 
 Heat oil in a large stock pot over medium high heat
 add onion celery fennel potatoes and garlic
 cook stirring occasionally about 5 minutes
-add tomatoes and their juices, stock and beans
+add tomatoes and their juices stock and Kennelly beans
 season with two teaspoons salt and half a teaspoon pepper
 increase heat to high and bring to a boil
 reduce heat to a simmer and cook until potatoes are tender about 10 minutes
-stir in vinegar and swiss chard, season with salt and pepper
+stir in vinegar and swiss chard season with salt and pepper
 prepare the pasta to Al Dente by following the directions included with the pasta
 divide pasta evenly between bowls
-ladle soup over the pasta and garnish with cheese`
+little soup over the pasta and garnish with cheese`
   },
 
   {
@@ -74,7 +74,8 @@ add salt
 sweat for 6 to 7 minutes 
 until the onions are translucent
 
-add lentils, tomatoes, broth, coriander, cumin, grains of paradise
+add
+lentils, tomatoes, broth, coriander, cumin, grains of paradise
 stir to combine
 
 increase the heat to high and bring just to a boil
@@ -117,115 +118,145 @@ const weightToOz = { oz:1, lb:16 };
 // -----------------------------
 // Convert decimal to simple fraction (1/2, 1/3, 1/4, etc.)
 // -----------------------------
-function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
-
 function toMixedFraction(value) {
   const whole = Math.floor(value);
   const frac = value - whole;
+
   if (frac === 0) return `${whole}`;
 
   const denominators = [2,3,4,6,8,12,16];
-  let bestNumerator=1, bestDenominator=2, minError=Infinity;
-  for(let d of denominators){
-    let n = Math.round(frac*d);
-    let error = Math.abs(frac-n/d);
-    if(error<minError && n>0){ minError=error; bestNumerator=n; bestDenominator=d; }
+  let bestNumerator = 1, bestDenominator = 2, minError = Infinity;
+
+  for (let d of denominators) {
+    let n = Math.round(frac * d);
+    let error = Math.abs(frac - n/d);
+    if (error < minError && n > 0) {
+      minError = error;
+      bestNumerator = n;
+      bestDenominator = d;
+    }
   }
-  const divisor=gcd(bestNumerator,bestDenominator);
-  const numerator = bestNumerator/divisor;
-  const denominator = bestDenominator/divisor;
-  if(whole===0) return `${numerator}/${denominator}`;
+
+  // reduce fraction
+  const divisor = gcd(bestNumerator, bestDenominator);
+  const numerator = bestNumerator / divisor;
+  const denominator = bestDenominator / divisor;
+
+  if (whole === 0) return `${numerator}/${denominator}`;
   return `${whole} ${numerator}/${denominator}`;
 }
 
+function gcd(a,b){return b===0?a:gcd(b,a%b);}
+
 // -----------------------------
-// Generate Shopping List (sorted by category and alphabetically)
+// Generate Shopping List
 // -----------------------------
 function generateShoppingList(selectedRecipes) {
   const totals = {};
 
-  selectedRecipes.forEach(recipe => {
-    recipe.ingredients.forEach(ing => {
+  selectedRecipes.forEach(recipe=>{
+    recipe.ingredients.forEach(ing=>{
       const key = ing.name;
       let amount = ing.amount;
       let unit = ing.unit;
       const category = ing.category || "Other";
 
-      if(volumeToTsp[unit]) { amount *= volumeToTsp[unit]; unit="tsp"; }
-      else if(weightToOz[unit]) { amount *= weightToOz[unit]; unit="oz"; }
+      if (volumeToTsp[unit]) { amount *= volumeToTsp[unit]; unit="tsp"; }
+      else if (weightToOz[unit]) { amount *= weightToOz[unit]; unit="oz"; }
 
-      if(!totals[key]) totals[key]={amount:0, unit, category};
+      if (!totals[key]) totals[key] = { amount:0, unit, category };
       totals[key].amount += amount;
     });
   });
 
+  // Convert totals to readable units
   const shoppingItems = [];
-  for(let ing in totals){
+  for (let ing in totals) {
     let {amount, unit, category} = totals[ing];
-    let formattedAmount="";
 
-    if(unit==="tsp"){
-      const cups=Math.floor(amount/volumeToTsp.cup); amount-=cups*volumeToTsp.cup;
-      const tbsp=Math.floor(amount/volumeToTsp.tbsp); amount-=tbsp*volumeToTsp.tbsp;
-      const tsp=amount;
+    let displayAmount = "";
+    if(unit==="tsp") {
+      const cups = Math.floor(amount/volumeToTsp.cup);
+      amount -= cups*volumeToTsp.cup;
+      const tbsp = Math.floor(amount/volumeToTsp.tbsp);
+      amount -= tbsp*volumeToTsp.tbsp;
+      const tsp = amount;
       const parts=[];
-      if(cups) parts.push(`${toMixedFraction(cups)} cup`);
-      if(tbsp) parts.push(`${toMixedFraction(tbsp)} tbsp`);
+      if(cups) parts.push(`${cups} cup`);
+      if(tbsp) parts.push(`${tbsp} tbsp`);
       if(tsp) parts.push(`${toMixedFraction(tsp)} tsp`);
-      formattedAmount = parts.join(" + ");
-    } else if(unit==="oz"){
-      const lbs=Math.floor(amount/weightToOz.lb); amount-=lbs*weightToOz.lb;
-      const oz=amount;
+      displayAmount = parts.join(" + ");
+    } else if(unit==="oz") {
+      const lbs = Math.floor(amount/weightToOz.lb);
+      amount -= lbs*weightToOz.lb;
+      const oz = amount;
       const parts=[];
       if(lbs) parts.push(`${lbs} lb`);
       if(oz) parts.push(`${toMixedFraction(oz)} oz`);
-      formattedAmount=parts.join(" + ");
+      displayAmount = parts.join(" + ");
     } else {
-      formattedAmount = `${toMixedFraction(amount)} ${unit}`;
+      displayAmount = `${toMixedFraction(amount)} ${unit}`;
     }
 
-    shoppingItems.push({name:ing, amount:formattedAmount, category});
+    shoppingItems.push({ name: ing, amount: displayAmount, category });
   }
 
-  const categoryOrder=["Produce","Meat","Dairy","Grains","Pantry","Other"];
+  // sort alphabetically within category
   shoppingItems.sort((a,b)=>{
-    const catDiff = categoryOrder.indexOf(a.category)-categoryOrder.indexOf(b.category);
-    return catDiff!==0?catDiff:a.name.localeCompare(b.name);
+    if(a.category < b.category) return -1;
+    if(a.category > b.category) return 1;
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
+    return 0;
   });
 
-  return shoppingItems.map(item=>`${item.name}: ${item.amount}`);
+  return shoppingItems;
 }
 
 // -----------------------------
 // UI Logic
 // -----------------------------
 document.addEventListener("DOMContentLoaded",()=>{
-  const days=["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+  const days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
 
   // Populate dropdowns
   days.forEach(day=>{
-    const select=document.getElementById(day);
+    const select = document.getElementById(day);
     recipes.forEach(r=>{
-      const option=document.createElement("option");
+      const option = document.createElement("option");
       option.value=r.name;
       option.textContent=r.name;
       select.appendChild(option);
     });
   });
 
-  // Generate
+  // Generate button
   document.getElementById("generate-btn").addEventListener("click",()=>{
-    const selectedRecipes=[];
+    const selectedRecipes = [];
     days.forEach(day=>{
-      const select=document.getElementById(day);
-      const recipe=recipes.find(r=>r.name===select.value);
+      const select = document.getElementById(day);
+      const recipe = recipes.find(r=>r.name===select.value);
       if(recipe) selectedRecipes.push(recipe);
     });
 
     // Shopping list
-    const shopping = generateShoppingList(selectedRecipes);
-    const shoppingDiv=document.getElementById("shopping-list");
-    shoppingDiv.innerHTML="<h2>Shopping List</h2><ul>"+shopping.map(i=>`<li>${i}</li>`).join("")+"</ul>";
+    const shoppingItems = generateShoppingList(selectedRecipes);
+    const categories = {};
+    shoppingItems.forEach(item=>{
+      if(!categories[item.category]) categories[item.category]=[];
+      categories[item.category].push(item);
+    });
+
+    const shoppingDiv = document.getElementById("shopping-list");
+    let html="<h2>Shopping List</h2>";
+    ["Produce","Meat","Dairy","Grains","Pantry","Other"].forEach(cat=>{
+      if(categories[cat]){
+        html+=`<h3>${cat}</h3><ul>`;
+        categories[cat].forEach(i=>html+=`<li>${i.name}: ${i.amount}</li>`);
+        html+="</ul>";
+      }
+    });
+    shoppingDiv.innerHTML=html;
 
     // Recipes
     const recipesDiv=document.getElementById("recipes");
@@ -239,18 +270,16 @@ document.addEventListener("DOMContentLoaded",()=>{
         html+=`<li>${toMixedFraction(ing.amount)} ${ing.unit} ${ing.name}</li>`;
       });
       html+="</ul>";
-
       html+="<h4>Instructions</h4>";
       r.instructions.split("\n").forEach(step=>{
         if(step.trim()==="") html+="<br>";
         else html+=`<p>${step.trim()}</p>`;
       });
-
       div.innerHTML=html;
       recipesDiv.appendChild(div);
     });
   });
 
-  // Print
+  // Print button
   document.getElementById("print-btn").addEventListener("click",()=>window.print());
 });
