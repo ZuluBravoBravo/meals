@@ -94,7 +94,7 @@ serve immediately.`
     instructions: `PREP
     Get out of fridge
     microwave
-    eat
+    eat`
   },
 
   {
