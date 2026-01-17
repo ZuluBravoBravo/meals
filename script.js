@@ -154,19 +154,27 @@ document.getElementById("generate-btn").addEventListener("click", () => {
   shoppingDiv.innerHTML = "<h2>Shopping List</h2><ul>" + shopping.map(i => `<li>${i}</li>`).join("") + "</ul>";
 
   // Generate recipes section
-  const recipesDiv = document.getElementById("recipes");
-  recipesDiv.innerHTML = "<h2>Recipes</h2>";
-  selectedRecipes.forEach(r => {
-    const div = document.createElement("div");
-    div.className = "recipe";
-    let html = `<h3>${r.name}</h3>`;
-    html += "<h4>Ingredients:</h4><ul>";
-    r.ingredients.forEach(ing => {
-      html += `<li>${toMixedFraction(ing.amount)} ${ing.unit} ${ing.name}</li>`;
-    });
-    html += "</ul>";
-    if(r.instructions) html += `<h4>Instructions:</h4><p>${r.instructions}</p>`;
-    div.innerHTML = html;
-    recipesDiv.appendChild(div);
+const recipesDiv = document.getElementById("recipes");
+recipesDiv.innerHTML = "<h2>Recipes</h2>";
+selectedRecipes.forEach(r => {
+  const div = document.createElement("div");
+  div.className = "recipe";
+  let html = `<h3>${r.name}</h3>`;
+  html += "<h4>Ingredients:</h4><ul>";
+  r.ingredients.forEach(ing => {
+    html += `<li>${toMixedFraction(ing.amount)} ${ing.unit} ${ing.name}</li>`;
   });
+  html += "</ul>";
+
+  // Instructions: split by commas into separate lines
+  if(r.instructions) {
+    html += "<h4>Instructions:</h4>";
+    r.instructions.split(',').forEach(line => {
+      html += `<p>${line.trim()}</p>`;
+    });
+  }
+
+  div.innerHTML = html;
+  recipesDiv.appendChild(div);
+});
 });
