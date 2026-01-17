@@ -40,7 +40,7 @@ Cook until golden on both sides`
       { name: "cumin", amount: 0.5, unit: "tsp" },
       { name: "grains of paradise", amount: 0.5, unit: "tsp" }
     ],
-    instructions: 'Get out a 6 quart dutch oven
+    instructions: `Get out a 6 quart dutch oven
       finely chop the onion
   finely chop the carrot
     finely chop the celery
@@ -53,7 +53,7 @@ Cook until golden on both sides`
                   salt
                     sweat for 6 to 7 minutes until the onions are translucent
                       add the lentils, tomatoes, broth, coriander, cumin, grains of paradise, stir to combine, increase the heat to high, bring just to a boil, reduce the heat to low, cover and simmer for 35 to 40 minutes until the lentils are tender
-              serve immediately.'
+              serve immediately.`
   },
 
   
