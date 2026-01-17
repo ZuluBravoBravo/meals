@@ -11,51 +11,103 @@
       font-family: Arial, sans-serif;
       margin: 20px;
     }
+
     h1, h2 {
       text-align: center;
     }
+
     .day-selector {
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
+
     label {
       font-weight: bold;
       margin-right: 10px;
     }
+
     select {
       padding: 5px;
+      min-width: 200px;
     }
+
     #generate-btn, #print-btn {
       display: block;
       margin: 20px auto;
-      padding: 10px 20px;
+      padding: 10px 24px;
       font-size: 16px;
       cursor: pointer;
     }
+
     #output {
       margin-top: 40px;
     }
+
+    /* ---------- SHOPPING LIST ---------- */
     .shopping-list {
-      margin-bottom: 40px;
-      page-break-after: always; /* Shopping list ends, recipes start fresh */
+      page-break-after: always;
     }
-    .recipe {
-      page-break-before: always; /* Each recipe on new page */
-    }
-    .recipe h3 {
-      text-align: center;
-      font-size: 24px;
+
+    .shopping-list h2 {
+      font-size: 28px;
       margin-bottom: 10px;
     }
+
+    .shopping-list ul {
+      list-style: none;
+      padding-left: 0;
+      columns: 2;
+      column-gap: 40px;
+    }
+
+    .shopping-list li {
+      padding: 6px 0;
+      border-bottom: 1px dotted #aaa;
+      font-size: 16px;
+    }
+
+    /* ---------- RECIPES ---------- */
+    .recipe {
+      page-break-before: always;
+    }
+
+    .recipe h3 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
     .recipe h4 {
       font-size: 18px;
-      margin-top: 10px;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 2px;
     }
+
     .recipe ul {
-      list-style-type: disc;
       margin-left: 20px;
+      margin-top: 4px;
     }
+
+    .recipe li {
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
     .recipe p {
-      margin: 3px 0; /* Tight spacing between instruction lines */
+      margin: 3px 0;
+      font-size: 15px;
+    }
+
+    /* ---------- PRINT CLEANUP ---------- */
+    @media print {
+      #selectors, #generate-btn, #print-btn {
+        display: none;
+      }
+
+      body {
+        margin: 0.5in;
+      }
     }
   </style>
 </head>
@@ -102,7 +154,7 @@
   </div>
 
   <script>
-    // Populate dropdowns with recipe names
+    // Populate dropdowns
     const days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
     days.forEach(day => {
       const select = document.getElementById(day);
@@ -114,38 +166,43 @@
       });
     });
 
-    // Generate button click
+    // Generate button
     document.getElementById("generate-btn").addEventListener("click", () => {
       const selectedRecipes = [];
       days.forEach(day => {
         const select = document.getElementById(day);
         const recipe = recipes.find(r => r.name === select.value);
-        if(recipe) selectedRecipes.push(recipe);
+        if (recipe) selectedRecipes.push(recipe);
       });
 
-      // Generate shopping list
+      /* ---------- SHOPPING LIST ---------- */
       const shopping = generateShoppingList(selectedRecipes);
       const shoppingDiv = document.getElementById("shopping-list");
-      shoppingDiv.innerHTML = "<h2>Shopping List</h2><ul>" + shopping.map(i => `<li>${i}</li>`).join("") + "</ul>";
+      shoppingDiv.innerHTML =
+        "<h2>Shopping List</h2><ul>" +
+        shopping.map(i => `<li>${i}</li>`).join("") +
+        "</ul>";
 
-      // Generate recipes section
+      /* ---------- RECIPES ---------- */
       const recipesDiv = document.getElementById("recipes");
       recipesDiv.innerHTML = "<h2>Recipes</h2>";
+
       selectedRecipes.forEach(r => {
         const div = document.createElement("div");
         div.className = "recipe";
+
         let html = `<h3>${r.name}</h3>`;
-        html += "<h4>Ingredients:</h4><ul>";
+
+        html += "<h4>Ingredients</h4><ul>";
         r.ingredients.forEach(ing => {
           html += `<li>${toMixedFraction(ing.amount)} ${ing.unit} ${ing.name}</li>`;
         });
         html += "</ul>";
 
-        // Split instructions by commas into separate lines
-        if(r.instructions) {
-          html += "<h4>Instructions:</h4>";
-          r.instructions.split(',').forEach(line => {
-            html += `<p>${line.trim()}</p>`;
+        if (r.instructions) {
+          html += "<h4>Instructions</h4>";
+          r.instructions.split(",").forEach(step => {
+            html += `<p>${step.trim()}</p>`;
           });
         }
 
