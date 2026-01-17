@@ -10,11 +10,16 @@ const recipes = [
       { name: "fennel", amount: 1, unit: "bulb" },
       { name: "yukon gold potatoes", amount: 2, unit: "each" },
       { name: "garlic", amount: 2, unit: "cloves" },
-      { name: "egg", amount: 2, unit: "each" },
-      { name: "all-purpose flour", amount: 1.5, unit: "cup" },
-      { name: "milk", amount: 1, unit: "cup" },
-      { name: "egg", amount: 2, unit: "each" },
-      { name: "sugar", amount: 2, unit: "tbsp" }
+      { name: "olive oil", amount: 1, unit: "tbsp" },
+      { name: "crushed whole tomatoes", amount: 1, unit: "can" },
+      { name: "vegetable broth", amount: 8, unit: "cups" },
+      { name: "cannellini beans", amount: 1, unit: "can" },
+      { name: "red wine vinegar", amount: 2, unit: "tsp" }
+      { name: "swiss chard", amount: 1.5 , unit: "bunch" },
+      { name: "short pasta", amount: 2, unit: "cups" },
+      { name: "grated parmesan cheese", amount: 1, unit: "cup" }
+      { name: "salt", amount: 1, unit: "pinch" }
+      { name: "pepper", amount: 1, unit: "pinch" }  
     ],
  instructions: `PREP
  cut half an onion into 1/2 inch pieces
