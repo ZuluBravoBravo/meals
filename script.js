@@ -8,8 +8,8 @@ const recipes = [
       { name: "onion", amount: 1, unit: "each" },
       { name: "celery", amount: 1, unit: "stalk" },
       { name: "fennel", amount: 1, unit: "bulb" },
-      { name: "all-purpose flour", amount: 1.5, unit: "cup" },
-      { name: "milk", amount: 1, unit: "cup" },
+      { name: "yukon gold potatoes", amount: 2, unit: "each" },
+      { name: "garlic", amount: 2, unit: "cloves" },
       { name: "egg", amount: 2, unit: "each" },
       { name: "all-purpose flour", amount: 1.5, unit: "cup" },
       { name: "milk", amount: 1, unit: "cup" },
@@ -17,10 +17,11 @@ const recipes = [
       { name: "sugar", amount: 2, unit: "tbsp" }
     ],
  instructions: `PREP
- cut half an onion into 1/2" pieces
- slice celery crossways into 1/2" pieces
- cut half a bulb of fennel into 1" pieces
- peel and cut potatos into 1" cubes
+ cut half an onion into 1/2 inch pieces
+ slice celery crossways into 1/2 inch pieces
+ cut half a bulb of fennel into 1 inch pieces
+ peel and cut potatos into 1 inch cubes
+ finely chop garlic
  
  Heat oil in a large stock pot over medium high heat
  add onion celery fennel potatoes and garlic
