@@ -102,16 +102,16 @@ const recipes = [
       { name: "fennel", amount: 1, unit: "bulb", category: "Produce" },
       { name: "yukon gold potatoes", amount: 2, unit: "each", category: "Produce" },
       { name: "garlic", amount: 2, unit: "cloves", category: "Produce" },
-      { name: "olive oil", amount: 1, unit: "tbsp", category: "Pantry" },
-      { name: "crushed whole tomatoes", amount: 1, unit: "can", category: "Pantry" },
-      { name: "vegetable broth", amount: 8, unit: "cups", category: "Pantry" },
-      { name: "cannellini beans", amount: 1, unit: "can", category: "Pantry" },
-      { name: "red wine vinegar", amount: 2, unit: "tsp", category: "Pantry" },
+      { name: "olive oil", amount: 1, unit: "tbsp", category: "Grocery" },
+      { name: "crushed whole tomatoes", amount: 1, unit: "can", category: "Grocery" },
+      { name: "vegetable broth", amount: 8, unit: "cups", category: "Grocery" },
+      { name: "cannellini beans", amount: 1, unit: "can", category: "Grocery" },
+      { name: "red wine vinegar", amount: 2, unit: "tsp", category: "Grocery" },
       { name: "swiss chard", amount: 1.5 , unit: "bunch", category: "Produce" },
       { name: "short pasta", amount: 2, unit: "cups", category: "Grains" },
       { name: "grated parmesan cheese", amount: 1, unit: "cup", category: "Dairy" },
-      { name: "salt", amount: 1, unit: "pinch", category: "Pantry" },
-      { name: "pepper", amount: 1, unit: "pinch", category: "Pantry" }
+      { name: "salt", amount: 1, unit: "pinch", category: "Grocery" },
+      { name: "pepper", amount: 1, unit: "pinch", category: "Grocery" }
     ],
     instructions: `PREP
 get out a large stock pot
@@ -138,17 +138,17 @@ little soup over the pasta and garnish with cheese`
   {
     name: "Lentil Soup",
     ingredients: [
-      { name: "olive oil", amount: 2, unit: "tbsp", category: "Pantry" },
+      { name: "olive oil", amount: 2, unit: "tbsp", category: "Grocery" },
       { name: "onion", amount: 1, unit: "each", category: "Produce" },
       { name: "carrots", amount: 1, unit: "each", category: "Produce" },
       { name: "celery", amount: 1, unit: "stalk", category: "Produce" },
-      { name: "kosher salt", amount: 2, unit: "tsp", category: "Pantry" },
+      { name: "kosher salt", amount: 2, unit: "tsp", category: "Grocery" },
       { name: "lentils", amount: 1, unit: "lb", category: "Pantry" },
-      { name: "peeled and chopped tomatoes", amount: 1, unit: "can", category: "Pantry" },
-      { name: "vegetable broth", amount: 2, unit: "quart", category: "Pantry" },
-      { name: "ground coriander", amount: 0.5, unit: "tsp", category: "Pantry" },
-      { name: "cumin", amount: 0.5, unit: "tsp", category: "Pantry" },
-      { name: "grains of paradise", amount: 0.5, unit: "tsp", category: "Pantry" }
+      { name: "peeled and chopped tomatoes", amount: 1, unit: "can", category: "Grocery" },
+      { name: "vegetable broth", amount: 2, unit: "quart", category: "Grocery" },
+      { name: "ground coriander", amount: 0.5, unit: "tsp", category: "Grocery" },
+      { name: "cumin", amount: 0.5, unit: "tsp", category: "Grocery" },
+      { name: "grains of paradise", amount: 0.5, unit: "tsp", category: "Grocery" }
     ],
     instructions: `PREP
 Get out a 6 quart dutch oven
@@ -196,7 +196,9 @@ const standaloneItems = [
   { name: "chicken breast", amount: 1, unit: "lb", category: "Meat" },
   { name: "eggs", amount: 12, unit: "each", category: "Dairy" },
   { name: "bread", amount: 1, unit: "loaf", category: "Bakery" },
-  { name: "cereal", amount: 1, unit: "box", category: "Pantry" }
+  { name: "cereal", amount: 1, unit: "box", category: "Grocery" }
+  { name: "yogurt", amount: 1, unit: "box", category: "Grocery" }
+  
 ];
 
 // -----------------------------
